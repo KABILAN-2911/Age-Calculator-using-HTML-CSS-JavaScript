@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGE CALCULATOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: rgb(77, 14, 203);
+            background: radial-gradient(circle,
+                    rgba(77, 14, 203, 1) 0%,
+                    rgba(255, 255, 255, 1) 100%);
+        }
+
+        #section {
+            margin-top: 200px;
+        }
+
+        .colr{
+            color:blueviolet
+        }
+        span,p
+        {
+            font-family:'Times New Roman', Times, serif;
+            color: rgb(233, 66, 191);
+        }
+     
+    </style>
+</head>
+
+<body>
+
+    <div class=" container w-50 text-start bg-white rounded shadow p-3" id="section">
+        <h1 class="text-black">Calculate</h1>
+        <h1 class=" colr" >Your Age</h1>
+        <div class=" container row p-3 text-center rounded">
+            <div class="col-12 pb-2 col-sm-7 col-lg-9"> <input type="date" class="form-control" id="date"></div>
+            <div class="col-12 col-sm-5 col-lg-3 "><button class="btn text-white" style="background-color: blueviolet;"
+                    onclick="calculateAge()">Calculate</button></div>
+        </div>
+
+    </div>
+    <div class="mt-3 text-center container">
+        <p class="h2 text-white">You are <span id="year" class=" fw-bold">0</span> year, <span id="month"
+                class=" fw-bold">0</span> month and <span id="days" class="fw-bold">0</span> days old</p>
+    </div>
+
+
+    <script>
+
+        var date = document.getElementById('date');
+        date.n = new Date().toISOString().split("T")[0];
+        function calculateAge() {
+            const ans = new Date();
+            const tdate = ans.getDate();
+            const tmonth = ans.getMonth() + 1;
+            const tyear = ans.getFullYear();
+            console.log(tdate);
+            console.log(tmonth);
+            console.log(tyear);
+
+            const res = new Date(date.value);
+
+            const bdate = res.getDate();
+            const bmonth = res.getMonth() + 1;
+            const byear = res.getFullYear();
+
+            console.log(bdate);
+            console.log(bmonth);
+            console.log(byear);
+
+            let adate, amonth, ayear;
+            ayear = tyear - byear;
+
+
+            if (tmonth >= bmonth)
+                amonth = tmonth - bmonth;
+            else {
+                ayear--;
+                amonth = 12 + tmonth - bmonth;
+            }
+
+            console.log(ayear);
+            console.log(amonth);
+
+            if (tdate >= bdate)
+                adate = tdate - bdate;
+            else {
+                amonth--;
+                adate = (new Date(byear, bmonth, 0).getDate()) + tdate - bdate;
+            }
+
+            document.getElementById('year').innerText = ayear;
+            document.getElementById('month').innerText = amonth;
+            document.getElementById('days').innerText = adate;
+
+
+        }
+    </script>
+</body>
+
+</html>
